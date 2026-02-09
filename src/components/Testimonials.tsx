@@ -6,13 +6,25 @@ import { useLanguage } from "@/hooks/useLanguage";
 import translations, { t } from "@/config/translations";
 import { siteConfig } from "@/config/site.config";
 
-function StarRating({ rating }: { rating: number }) {
+function GoogleLogo({ className = "w-5 h-5" }: { className?: string }) {
   return (
-    <div className="flex gap-1">
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+  );
+}
+
+function StarRating({ rating, size = "sm" }: { rating: number; size?: "sm" | "lg" }) {
+  const starSize = size === "lg" ? "w-5 h-5" : "w-3.5 h-3.5";
+  return (
+    <div className="flex gap-0.5">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`w-4 h-4 ${i < rating ? "text-gold" : "text-black-border"}`}
+          className={`${starSize} ${i < rating ? "text-[#FBBC05]" : "text-black-border"}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -32,8 +44,6 @@ export default function Testimonials() {
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // How many visible at a time: 3 on desktop, 1 on mobile
-  // We handle responsive via CSS (show/hide), but for carousel logic we advance by 1
   const goNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
   }, [total]);
@@ -54,7 +64,6 @@ export default function Testimonials() {
     };
   }, [isPaused, goNext]);
 
-  // Get visible indices (wrap around)
   const getVisibleIndices = (count: number) => {
     const indices: number[] = [];
     for (let i = 0; i < count; i++) {
@@ -72,37 +81,44 @@ export default function Testimonials() {
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: i * 0.08 }}
-      className="card-luxury rounded-sm p-6 sm:p-8 relative flex-1 min-w-0"
+      className="bg-white rounded-lg p-5 sm:p-6 relative flex-1 min-w-0 shadow-md"
     >
-      {/* Gold quote mark */}
-      <div className="text-gold/20 text-6xl font-serif absolute top-4 right-6 leading-none">
-        &ldquo;
-      </div>
-
-      {/* Stars */}
-      <div className="mb-4">
-        <StarRating rating={testimonial.rating} />
+      {/* Top row: Google icon + reviewer info */}
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center gap-3">
+          {/* Avatar circle with initial */}
+          <div className="w-10 h-10 rounded-full bg-[#1a73e8] flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-sm font-bold">
+              {(lang === "es" ? testimonial.nameEs : testimonial.nameEn).charAt(0)}
+            </span>
+          </div>
+          <div>
+            <p className="text-gray-900 text-sm font-semibold leading-tight">
+              {lang === "es" ? testimonial.nameEs : testimonial.nameEn}
+            </p>
+            <div className="flex items-center gap-1 mt-0.5">
+              <StarRating rating={testimonial.rating} />
+            </div>
+          </div>
+        </div>
+        <GoogleLogo className="w-6 h-6 flex-shrink-0" />
       </div>
 
       {/* Quote */}
-      <p className="text-white-muted text-sm leading-relaxed mb-6 relative z-10">
+      <p className="text-gray-700 text-sm leading-relaxed mb-3 line-clamp-5">
         {lang === "es" ? testimonial.quoteEs : testimonial.quoteEn}
       </p>
 
-      {/* Author */}
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-black-surface border border-black-border flex items-center justify-center">
-          <span className="text-gold text-sm font-bold">
-            {(lang === "es" ? testimonial.nameEs : testimonial.nameEn).charAt(0)}
+      {/* Bottom: service tag + "Posted on Google" */}
+      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+        <span className="text-xs text-gray-500">
+          {lang === "es" ? testimonial.serviceEs : testimonial.serviceEn}
+        </span>
+        <div className="flex items-center gap-1">
+          <GoogleLogo className="w-3.5 h-3.5" />
+          <span className="text-[10px] text-gray-400 font-medium">
+            {lang === "es" ? "Google Review" : "Google Review"}
           </span>
-        </div>
-        <div>
-          <p className="text-white-soft text-sm font-semibold">
-            {lang === "es" ? testimonial.nameEs : testimonial.nameEn}
-          </p>
-          <p className="text-white-muted text-xs">
-            {lang === "es" ? testimonial.serviceEs : testimonial.serviceEn}
-          </p>
         </div>
       </div>
     </motion.div>
@@ -117,7 +133,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <div className="gold-line mx-auto mb-4" />
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white-soft mb-4">
@@ -126,6 +142,45 @@ export default function Testimonials() {
           <p className="text-gold text-lg uppercase tracking-wider">
             {t(translations.testimonials.subtitle, lang)}
           </p>
+        </motion.div>
+
+        {/* Google Rating Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-12"
+        >
+          {/* Google Reviews aggregate */}
+          <div className="flex items-center gap-3 bg-white rounded-xl px-6 py-3 shadow-lg">
+            <GoogleLogo className="w-8 h-8" />
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                <span className="text-gray-900 text-2xl font-bold leading-none">5.0</span>
+                <StarRating rating={5} size="lg" />
+              </div>
+              <span className="text-gray-500 text-xs mt-0.5">
+                {lang === "es" ? "Basado en 168 resenas de Google" : "Based on 168 Google reviews"}
+              </span>
+            </div>
+          </div>
+
+          {/* View on Google link */}
+          <a
+            href="https://www.google.com/maps/place/Barberia+Medellin+%7C+Movil+Barbero+%7C+Barbero+Millonario/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-white-muted hover:text-gold transition-colors text-sm group"
+          >
+            <GoogleLogo className="w-4 h-4" />
+            <span className="group-hover:underline">
+              {lang === "es" ? "Ver todas las resenas en Google" : "View all reviews on Google"}
+            </span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
         </motion.div>
 
         {/* Carousel container */}
@@ -140,13 +195,7 @@ export default function Testimonials() {
             className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black-surface border border-black-border flex items-center justify-center text-white-muted hover:text-gold hover:border-gold/40 transition-colors cursor-pointer"
             aria-label="Previous testimonial"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -156,19 +205,13 @@ export default function Testimonials() {
             className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black-surface border border-black-border flex items-center justify-center text-white-muted hover:text-gold hover:border-gold/40 transition-colors cursor-pointer"
             aria-label="Next testimonial"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           {/* Desktop: 3 cards */}
-          <div className="hidden lg:flex gap-6 px-8">
+          <div className="hidden lg:flex gap-5 px-8">
             {visibleDesktop.map((idx, i) => renderCard(testimonials[idx], i))}
           </div>
 
