@@ -15,14 +15,13 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
-import SplashScreen from "@/components/SplashScreen";
 
 export default function Home() {
   const languageValue = useLanguageProvider();
 
   return (
     <LanguageContext.Provider value={languageValue}>
-      <SplashScreen>
+      <>
         <ScrollProgress />
         <Navbar />
         <main>
@@ -47,7 +46,7 @@ export default function Home() {
         <Footer />
         <WhatsAppButton />
         <BackToTop />
-      </SplashScreen>
+      </>
     </LanguageContext.Provider>
   );
 }

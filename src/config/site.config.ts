@@ -311,20 +311,13 @@ export const siteConfig = {
     },
   ],
 
-  // ---- Gallery placeholder images ----
+  // ---- Gallery images ----
   gallery: [
-    { id: 1, src: "/images/gallery-1.jpg", alt: "VIP Haircut Result" },
-    { id: 2, src: "/images/gallery-2.jpg", alt: "Premium Beard Styling" },
-    { id: 3, src: "/images/gallery-3.jpg", alt: "Before and After" },
-    { id: 4, src: "/images/gallery-4.jpg", alt: "Luxury Home Service" },
-    { id: 5, src: "/images/gallery-5.jpg", alt: "Fade Perfection" },
-    { id: 6, src: "/images/gallery-6.jpg", alt: "Client Transformation" },
-    { id: 7, src: "/images/gallery-7.jpg", alt: "VIP Experience" },
-    { id: 8, src: "/images/gallery-8.jpg", alt: "Detail Work" },
-    { id: 9, src: "/images/gallery-9.jpg", alt: "Premium Products" },
-    { id: 10, src: "/images/gallery-10.jpg", alt: "Style Consultation" },
-    { id: 11, src: "/images/gallery-11.jpg", alt: "Beard Transformation" },
-    { id: 12, src: "/images/gallery-12.jpg", alt: "VIP Finish" },
+    { id: 1, src: "/images/gallery-3.jpg", alt: "Charcoal Face Treatment" },
+    { id: 3, src: "/images/gallery-5.jpg", alt: "Luxury Penthouse Cut" },
+    { id: 4, src: "/images/gallery-6.jpg", alt: "Premium Beard Work" },
+    { id: 5, src: "/images/gallery-7.jpg", alt: "Rooftop VIP Experience" },
+    { id: 7, src: "/images/gallery-9.jpg", alt: "Braided Style Result" },
   ],
 };
 
