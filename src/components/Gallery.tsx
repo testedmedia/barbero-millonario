@@ -104,10 +104,10 @@ export default function Gallery() {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
                 className={`${heightClass} break-inside-avoid rounded-sm overflow-hidden border border-black-border group relative ${showPlaceholder ? "gallery-placeholder" : ""}`}
                 onClick={() => !showPlaceholder && openLightbox(item.id)}
                 style={{ cursor: showPlaceholder ? "default" : "pointer" }}

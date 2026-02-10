@@ -78,9 +78,9 @@ export default function Testimonials() {
   const renderCard = (testimonial: (typeof testimonials)[number], i: number) => (
     <motion.div
       key={`${testimonial.id}-${activeIndex}`}
-      initial={{ opacity: 0, x: 30 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, delay: i * 0.08 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
       className="bg-white rounded-lg p-5 sm:p-6 relative flex-1 min-w-0 shadow-md"
     >
       {/* Top row: Google icon + reviewer info */}

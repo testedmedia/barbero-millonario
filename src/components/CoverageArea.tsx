@@ -39,10 +39,10 @@ export default function CoverageArea() {
           {siteConfig.coverageAreas.map((area, i) => (
             <motion.div
               key={area}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
+              transition={{ duration: 0.3 }}
               className="px-5 py-2.5 rounded-sm border border-gold/30 text-gold text-sm sm:text-base uppercase tracking-wider hover:bg-gold/10 transition-colors duration-300"
             >
               <div className="flex items-center gap-2">
