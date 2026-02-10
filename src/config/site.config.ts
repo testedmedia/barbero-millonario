@@ -318,6 +318,12 @@ export const siteConfig = {
     { id: 4, src: "/images/gallery-6.jpg", alt: "Premium Beard Work" },
     { id: 5, src: "/images/gallery-7.jpg", alt: "Rooftop VIP Experience" },
     { id: 7, src: "/images/gallery-9.jpg", alt: "Braided Style Result" },
+    { id: 11, src: "/images/gmb-1.jpg", alt: "Barbero Millonario Style" },
+    { id: 12, src: "/images/gmb-2.jpg", alt: "Premium Haircut Result" },
+    { id: 13, src: "/images/gmb-3.jpg", alt: "VIP Barber Experience" },
+    { id: 14, src: "/images/gmb-4.jpg", alt: "Fresh Fade Cut" },
+    { id: 15, src: "/images/gmb-5.jpg", alt: "Client Transformation" },
+    { id: 16, src: "/images/gmb-6.jpg", alt: "Signature Barbero Look" },
   ],
 };
 
