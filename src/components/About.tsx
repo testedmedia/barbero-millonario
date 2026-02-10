@@ -63,7 +63,7 @@ export default function About() {
           {/* Photo */}
           <div className="relative aspect-[3/4] rounded-sm overflow-hidden border border-black-border order-2 md:order-1">
             <Image
-              src="/images/gallery-1.jpg"
+              src="/images/gmb-1.jpg"
               alt="Stiven Diaz - Barbero Millonario"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
