@@ -106,7 +106,7 @@ export const siteConfig = {
     "Envigado",
     "Sabaneta",
     "La Estrella",
-    "Belen",
+    "Las Palmas",
     "Manila",
     "Astorga",
   ],
@@ -265,9 +265,9 @@ export const siteConfig = {
       questionEs: "Que zonas cubres?",
       questionEn: "What areas do you cover?",
       answerEs:
-        "Cubro El Poblado, Laureles, Envigado, Sabaneta, La Estrella, Belen y zonas cercanas. Para otras zonas, consultar disponibilidad por WhatsApp.",
+        "Cubro El Poblado, Laureles, Envigado, Sabaneta, La Estrella, Las Palmas y zonas cercanas. Para otras zonas, consultar disponibilidad por WhatsApp.",
       answerEn:
-        "I cover El Poblado, Laureles, Envigado, Sabaneta, La Estrella, Belen, and surrounding areas. For other areas, check availability via WhatsApp.",
+        "I cover El Poblado, Laureles, Envigado, Sabaneta, La Estrella, Las Palmas, and surrounding areas. For other areas, check availability via WhatsApp.",
     },
     {
       questionEs: "Con cuanta anticipacion debo reservar?",
