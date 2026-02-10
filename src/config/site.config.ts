@@ -324,6 +324,7 @@ export const siteConfig = {
     { id: 14, src: "/images/gmb-4.jpg", alt: "Fresh Fade Cut" },
     { id: 15, src: "/images/gmb-5.jpg", alt: "Client Transformation" },
     { id: 16, src: "/images/gmb-6.jpg", alt: "Signature Barbero Look" },
+    { id: 17, src: "/images/gmb-7.jpg", alt: "Barbero Millonario Portfolio" },
   ],
 };
 
